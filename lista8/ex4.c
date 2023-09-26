@@ -10,20 +10,15 @@ conteúdo dessa string. O programa imprime a string sem suas vogais.
 char * alocaDinamicamenteString (int tamanho)
 {
     char * p = (char*) malloc (tamanho * sizeof(char));
-    
-    if(p == NULL)
-    {
-        return "erro";
-    } else
-    {
+
     return p;
-    }
+
 }
 
-void removeVogais (char * p)
+void removeVogais (char * p, int tamanho)
 {
     int aux = 0;
-    for(int i = 0; i != '\0'; i++)
+    for(int i = 0; i < tamanho ; i++)
     {
         if(p[i] != 'A' && p[i] != 'a' &&
            p[i] != 'E' && p[i] != 'e' &&
@@ -31,10 +26,9 @@ void removeVogais (char * p)
            p[i] != 'O' && p[i] != 'o' &&
            p[i] != 'U' && p[i] != 'u')
            {
-            p[aux++] = p[i];
+            printf("%c", p[i]);
            }
     } 
-    printf("Palavra sem vogal: %s\n", p);
 }
 
 int main(){
@@ -47,16 +41,11 @@ int main(){
 
     p = alocaDinamicamenteString(tamanho);
    
-    if(p == "erro")
-    {
-        printf("Erro na alocacao dinamica\n");
-    } else
-    {
     printf("Digite o conteudo da string: ");
     scanf("%s", p);
-    }
+
     printf("Palavra: %s\n", p);
-    removeVogais(p);
+    removeVogais(p, tamanho);
 
     free(p);
 
