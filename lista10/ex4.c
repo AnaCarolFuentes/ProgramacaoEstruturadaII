@@ -36,3 +36,5 @@ char * MIX(char * palavra1, char * palavra2){
 
     return mix;
 }
+
+//Corrigir
