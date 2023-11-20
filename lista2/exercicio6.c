@@ -11,7 +11,7 @@ estrutura de repetição determine qual é o fatorial de 5. Sabe-se que o fator 
 
     for(int i=5; i>0; i--){
 
-        fatorial = i * fatorial;
+        fatorial *= i;
 
     }
     printf("fatorial = %d", fatorial);

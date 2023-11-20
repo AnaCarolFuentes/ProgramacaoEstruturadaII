@@ -9,22 +9,32 @@
 (d) Libere a memória alocada.
 */
 
-int main()
+void lerArray (int * array)
 {
+    for(int i = 0; i < 5; i++)
+    {
+        printf("Digite o numero da posicao %d: ", i);
+        scanf("%d", (array + i));
+    }
+}
 
-    int *p;
-    p = (int*) malloc(5 * sizeof(int));
-    
+void imprimirArray (int * array)
+{
     for(int i = 0; i < 5; i++)
     {
-        printf("Digite a posicao %d do vetor: ", i);
-        scanf("%d", (p + i)); //A aritmetica de ponteiro consegue acessar mais rapido as posicoes 
+        printf("Array[%d] = %d\n", i, *(array + i));
     }
-    for(int i = 0; i < 5; i++)
-    {
-        printf("vetor[%d] = %d\n", i, *(p + i));
-    }
-    free(p);
+}
+
+int main(){
     
+    int * array;
+    array = (int*) malloc (5 * sizeof(int));
+
+    lerArray(array);
+    imprimirArray(array);
+
+    free(array);
+
     return 0;
 }

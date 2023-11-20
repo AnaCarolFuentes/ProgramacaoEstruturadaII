@@ -7,25 +7,36 @@ alocação dinâmica de memória. Em seguida, leia do usuário seus valores e im
 vetor lido.
 */
 
+void lerVetor(int * vetor,int tamanho)
+{
+    for(int i = 0; i < tamanho; i++)
+    {
+        printf("Vetor[%d]: ", i);
+        scanf("%d", (vetor + i));
+    }
+}
+void imprimirVetor(int * vetor, int tamanho)
+{
+    for(int i = 0; i < tamanho; i++)
+    {
+        printf("Vetor[%d] = %d\n", i, *(vetor + i));
+    }
+}
+
 int main()
 {
-    int *v;
-    int num_posicoes;
+    int * vetor = NULL;
+    int tamanho = 0;
 
-    printf("Digite o numero de posicoes do vetor: ");
-    scanf("%d", &num_posicoes);
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &tamanho);
 
-    v = (int*) malloc (num_posicoes * sizeof(int));
+    vetor = (int*) calloc (tamanho, sizeof(int));
 
-    for(int i = 0; i < num_posicoes; i++)
-    {
-        printf("Digite o valor da posicao %d: ", i);
-        scanf("%d", (v + i));
-    }
-    for(int i = 0; i < num_posicoes; i++)
-    {
-        printf("Vetor[%d] = %d\n", i, *(v + i));
-    }
-    free(v);
+    lerVetor(vetor, tamanho);
+    imprimirVetor(vetor, tamanho);
+
+    free(vetor);
     return 0;
+
 }
