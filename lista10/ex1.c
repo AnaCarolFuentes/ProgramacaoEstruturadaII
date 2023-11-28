@@ -8,23 +8,22 @@
 int potencia (int, int);
 
 int main(){
-    int base, expoente;
+    int n1 = 7;
+    int n2 = 2;
 
-    printf("Digite o valor da base: ");
-    scanf("%d", &base);
-    printf("Digite o valor do expoente: ");
-    scanf("%d", &expoente);
+    printf("%d ^ %d = %d", n1, n2, potencia(n1, n2));
 
-    printf("Resultado: %d", potencia(base, expoente));
-
-    return 0;
+    return 0; 
 }
 
-int potencia (int x, int y){
 
+
+int potencia(int x, int y){
     int resultado = 1;
+
     for(int i = 0; i < y; i++){
-        resultado = resultado * x;
+        resultado *= x;
     }
+
     return resultado;
 }

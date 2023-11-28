@@ -9,32 +9,29 @@
 (d) Libere a memória alocada.
 */
 
-void lerArray (int * array)
-{
-    for(int i = 0; i < 5; i++)
-    {
-        printf("Digite o numero da posicao %d: ", i);
+void lerArray (int * array, int tamanho){
+
+    for(int i = 0; i < tamanho; i++){
+        printf("Array[%d]: ", i);
         scanf("%d", (array + i));
     }
+    
 }
 
-void imprimirArray (int * array)
-{
-    for(int i = 0; i < 5; i++)
-    {
-        printf("Array[%d] = %d\n", i, *(array + i));
+void imprimirArray (int * array, int tamanho){
+
+    for(int i = 0; i < tamanho; i++){
+        printf("Array[%d]: %d\n", i, *(array + i));
     }
 }
 
 int main(){
-    
-    int * array;
-    array = (int*) malloc (5 * sizeof(int));
 
-    lerArray(array);
-    imprimirArray(array);
+    int * array = NULL;
+    array = (int*) malloc (5 * sizeof(int));
+    int tamanho = (sizeof(array) * 5)/sizeof(int); //refazer o tamanho
+    lerArray(array, tamanho);
+    imprimirArray(array, tamanho);
 
     free(array);
-
-    return 0;
 }

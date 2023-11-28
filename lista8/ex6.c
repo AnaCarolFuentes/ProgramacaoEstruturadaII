@@ -8,60 +8,111 @@
 // valor contido em uma determinada posição. A memória deve iniciar com todos os dados
 // zerados.
 
-int main()
+int * alocarVetorDinamicamente (int tamanho) {
+   
+    int * array = (int*) malloc (tamanho * sizeof (int));
+    
+    return array;
+}
+
+void lerArray (int * array, int tamanho)
 {
-    int opcao = 10;
-    int tamanho = 0;
-    int posicao = 0;
-    int valor = 0;
-
-    printf("Digite o numero de bytes que sera alocado: ");
-    scanf("%d", &tamanho);
-
-    while(tamanho % 4 != 0)
-    {
-        printf("OPS! O numero precisa ser um multiplo de 4. Digite outro valor: ");
-        scanf("%d", &tamanho);
+    for(int i = 0; i < tamanho; i++) {
+        printf("Vetor[%d] : ", i);
+        scanf("%d", (array + i));
     }
+}
 
-    tamanho = (tamanho/sizeof(int));
+void imprimirArray (int * array, int tamanho){
+    
+    for(int i = 0; i < tamanho; i++){
+        printf("Vetor[%d] : %d\n", i, *(array + i));
+    }
+}
 
-    int * vetor = (int*) calloc (tamanho, sizeof(int));
+void consultarValor (int * array, int tamanho, int posicao){
+    for(int i = 0; i < tamanho; i++){
+        if(i == posicao){
+            printf("Valor consultado = %d\n", *(array + i));
+            break;
+        }
+    }
+}
 
+int * inserirValor (int * array, int tamanho, int posicao, int valor){
+
+    array = (int *) realloc (array, (++tamanho) * sizeof(int));
+    int cont = 0;
+    tamanho--;
     do
     {
-        printf("\nDigite uma opcao: ");
-        scanf("%d", &opcao);
-    
-    switch (opcao)
-    {
-    case 1:
-        printf("Digite a posicao desejada: ");
-        scanf("%d", &posicao);
-        printf("Digite o valor: ");
-        scanf("%d", &valor);
-        vetor[posicao] = valor;
-        break;
-    case 2:
-        printf("Digite a posicao desejada: ");
-        scanf("%d", &posicao);
-        printf("\n%d", vetor[posicao]);
-        break;
-    case 3: 
-        for(int i = 0; i < tamanho; i++){
-            printf("Vetor[%d] = %d\n", i, *(vetor + i));
+        array[tamanho] = array[tamanho - 1];
+        tamanho--;
+        cont++;
+        if(posicao == cont){
+            array[cont] = valor;
         }
-        break;
-    case 0: 
-        printf("Saindo...\n");
-        break;
-    default:
-        printf("Opcao invalida!\n");
-        break;
-    }
+    }while (tamanho >= 0);
 
-    } while (opcao != 0);
-
-    free(vetor);
-    return 0;
+    return array;
 }
+int lerTamanho (){
+    int tamanho = 3;
+    while (tamanho % 4 != 0){
+        printf("Digite o tamanho da memória: ");
+        scanf("%d", &tamanho);
+    }
+    return tamanho/4;
+}
+
+int main()
+{
+    int tamanho = lerTamanho();
+    int * array = alocarVetorDinamicamente(tamanho);
+    lerArray(array, tamanho);
+
+    int opcao = 0;
+
+    do{
+            printf("\n---------Menu Opcoes---------------\n");
+            printf("1- Inserir valor em qualquer posicao\n");
+            printf("2- Consultar valor em qualquer posicao\n");
+
+            printf("Digite a opcao desejada: ");
+            scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        int posicao;
+        int valor;
+        case 1:
+            printf("\nDigite a posicao que deseja inserir o valor: ");
+            scanf("%d", &posicao);
+            printf("\nDigite o valor que deseja inserir: ");
+            scanf("%d", &valor);
+            inserirValor (array, tamanho, posicao, valor);
+            tamanho++;
+            imprimirArray(array, tamanho);
+            break;
+        case 2:
+            printf("\nDigite a posicao que deseja consultar o valor: ");
+            scanf("%d", &posicao);
+            consultarValor(array, tamanho, posicao);
+            break;
+
+        case -1:
+            printf("Saindo...");
+            break;
+        
+        default:
+            printf("Inválido!\n");
+            break;
+        }
+}  while(opcao != -1);
+
+    free(array);
+    return 0;
+
+}
+
+//problema: to perdendo a referencia do ultimo valor -> Perguntar pro Simon 

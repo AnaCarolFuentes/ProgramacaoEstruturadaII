@@ -10,8 +10,17 @@
 
 int digito (int n, int k){
 
-    float divisao = 0;
-    float resto = 0;
-    divisao = n / (pow(10, k));
+    int resto = n / (pow(10, (k-1)));
     
+    return resto % 10;
+}
+
+int main(){
+    int i = 567;
+    int j = 2;
+
+    printf("%d", digito(i, j));
+
+    return 0;
+
 }

@@ -7,7 +7,7 @@ alocação dinâmica de memória. Em seguida, leia do usuário seus valores e im
 vetor lido.
 */
 
-void lerVetor(int * vetor,int tamanho)
+void lerVetor(int * vetor, int tamanho)
 {
     for(int i = 0; i < tamanho; i++)
     {
@@ -31,7 +31,7 @@ int main()
     printf("Digite o tamanho do vetor: ");
     scanf("%d", &tamanho);
 
-    vetor = (int*) calloc (tamanho, sizeof(int));
+    vetor = (int*) malloc (tamanho * sizeof(int));
 
     lerVetor(vetor, tamanho);
     imprimirVetor(vetor, tamanho);

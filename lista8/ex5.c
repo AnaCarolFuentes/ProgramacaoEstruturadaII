@@ -31,7 +31,7 @@ int main()
 
     for(int i = 0; i < tamanho; i++)
     {
-        if((*(vetor + i) % num) == 0)
+        if((num % (*(vetor + i))) == 0)
         {
             cont++;
             printf("%d ," , *(vetor + i));

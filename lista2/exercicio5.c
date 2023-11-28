@@ -12,5 +12,18 @@ elemento da sequência de Fibonacci é dado pela soma do 1o e do 0o
 
 int main(){
 
+    int atual = 0;
+    int proximo = 1;
+    int valor = 0;
+    int cont = 0;
+
+    scanf("%d", &valor);
+
+    do{
+        printf(" %d -", atual);
+        proximo += atual; 
+        atual = proximo;
+        cont++;
+    }while (cont < valor);
 
 }

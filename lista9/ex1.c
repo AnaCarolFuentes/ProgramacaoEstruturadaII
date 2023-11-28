@@ -22,7 +22,7 @@ int main(){
 
     Pessoa p1;
     printf("Digite o nome: ");
-    scanf("%[^\n]", p1.nome);
+    scanf("%s", p1.nome);
     printf("Digite a idade: ");
     scanf("%d", &p1.idade);
     printf("Digite o nome da rua: ");
